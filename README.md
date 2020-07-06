@@ -14,7 +14,7 @@ Basic Installation
 
 Run:
 
-    meson builddir
+    meson builddir --prefix ~/.local/ builddir
     meson compile -C builddir
 
 You can then run Gnofract 4D in the local directory:
@@ -23,7 +23,7 @@ You can then run Gnofract 4D in the local directory:
 
 You can also install it:
 
-    sudo meson install -C builddir
+    meson install -C builddir
 
 You can then run it as:
 
