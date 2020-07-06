@@ -12,16 +12,6 @@ import pytest
 from fract4d import options
 
 class Test(unittest.TestCase):
-    def testSetupPyVersionMatches(self):
-        doc = open("setup.py")
-        content = doc.read()
-        doc.close()
-        doc_re = re.compile(r"gnofract4d_version = '(\S+)'")
-        m = doc_re.search(content)
-
-        self.assertTrue(m, "setup.py doesn't specify version")
-        self.assertEqual(options.VERSION, m.group(1))
-
     def testDocVersionMatches(self):
         # check the docs
         doc = open("manual/config.toml")
