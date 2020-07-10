@@ -107,11 +107,11 @@ install_data('gnofract4d-mime.xml',
 
 # Test
 
-ln = find_program('ln')
-custom_target('ln',
-    command : [ln, '-sf',
+cp = find_program('cp')
+custom_target('cp',
+    command : [cp,
         fract4dc.full_path(),
-        meson.source_root() / 'fract4d',
+        meson.source_root() / 'fract4d/',
     ],
     output : 'none',
     build_by_default : true,
