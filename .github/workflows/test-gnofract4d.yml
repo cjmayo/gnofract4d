@@ -31,19 +31,21 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install MacOS packages
         if: ${{ runner.os == 'macOS' }}
-        run: brew install gtk+3 meson pygobject3
+        run: brew install gtk+3 ninja pygobject3
       - name: Install Ubuntu packages
         if: ${{ runner.os == 'Linux' }}
         # libgirepository1.0-dev required to build PyGObject from source
-        run: sudo apt install gir1.2-gtk-3.0 libgirepository1.0-dev meson xvfb
+        run: sudo apt install gir1.2-gtk-3.0 libgirepository1.0-dev ninja-build xvfb
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python }}
       - name: Install Tox and any other PyPI packages
-        run: pip install tox
+        run: pip install meson pytest tox
       - name: Build
-        run: python setup.py build
+        run: |
+            meson _build
+            ninja -C _build
       - name: Run Tox (MacOS)
         if: ${{ runner.os == 'macOS' }}
         run: tox -e ${{ matrix.toxenv }}
