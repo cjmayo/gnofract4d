@@ -29,7 +29,7 @@ jobs:
       PYTHON: ${{ matrix.python }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Install macOS packages
         if: ${{ runner.os == 'macOS' }}
         run: brew install gtk+3 pygobject3
