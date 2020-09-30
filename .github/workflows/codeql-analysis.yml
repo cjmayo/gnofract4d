@@ -30,7 +30,8 @@ jobs:
 
     steps:
     - name: Install Ubuntu packages
-      run: sudo apt install pkg-config
+      # python setup.py build run by Analyze (cpp)
+      run: sudo apt install python-is-python3
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
