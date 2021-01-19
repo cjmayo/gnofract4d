@@ -3,11 +3,7 @@
 # unit tests for undo code
 
 from fract4dgui import undo
-from gi.repository import Gtk
 import unittest
-
-import gi
-gi.require_version('Gtk', '3.0')
 
 
 class Status:
@@ -21,13 +17,6 @@ class UndoTest(unittest.TestCase):
 
     def tearDown(self):
         pass
-
-    def wait(self):
-        Gtk.main()
-
-    def quitloop(self, f, status):
-        if status == 0:
-            Gtk.main_quit()
 
     def assertUndoStatus(self, undoer, should_undo, should_redo):
         self.assertEqual(undoer.can_undo(), should_undo)
