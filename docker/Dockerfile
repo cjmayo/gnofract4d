@@ -7,7 +7,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN \
     apt-get update && \
     apt-get -y upgrade && \
-    apt-get -y install gir1.2-gtk-3.0 libjpeg-dev libpng-dev pkg-config python3-gi-cairo python3-pip xvfb
+    apt-get -y install gir1.2-gtk-3.0 libglib2.0-dev-bin libjpeg-dev \
+        libpng-dev pkg-config python3-gi-cairo python3-pip xvfb
 
 # bin/run_builds.sh deps
 RUN \
