@@ -2,6 +2,7 @@
 
 #include "model/colorutils.h"
 
+#define _USE_MATH_DEFINES
 #include <cassert>
 #include <cstdio>
 #include <cmath>
