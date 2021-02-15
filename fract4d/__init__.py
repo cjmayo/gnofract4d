@@ -5,4 +5,5 @@
 import sys
 import os
 
-sys.setdlopenflags(os.RTLD_GLOBAL | os.RTLD_NOW)
+if sys.platform.startswith("linux") or sys.platform.startswith("darwin"):
+    sys.setdlopenflags(os.RTLD_GLOBAL | os.RTLD_NOW)
