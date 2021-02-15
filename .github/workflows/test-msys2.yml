@@ -1,0 +1,34 @@
+name: Test Gnofract 4D on MSYS2
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review, synchronize]
+  push:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+              mingw-w64-x86_64-toolchain mingw-w64-x86_64-dlfcn
+              mingw-w64-x86_64-python mingw-w64-x86_64-python-pip
+              mingw-w64-x86_64-python-gobject mingw-w64-x86_64-gtk3 mingw-w64-x86_64-libxml2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install Tox and any other PyPI packages
+        run: pip install setuptools tox
+      - name: Build
+        run: python setup.py build
+      - name: Run Tox
+        run: tox -e py
