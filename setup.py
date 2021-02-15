@@ -2,6 +2,7 @@
 
 from setuptools import setup, Extension
 import setuptools.command.build_py
+from pathlib import Path
 import sysconfig
 import os
 import shutil
@@ -78,7 +79,7 @@ if jpeg_flags + jpeg_libs:
 class fract4d_build_py(setuptools.command.build_py.build_py):
     def run(self):
         print("running fract4d_build_py")
-        subprocess.run("./bin/resources.sh", check=True)
+        subprocess.run(Path("bin/resources.sh").read_text().strip().split()[1:], check=True)
         super().run()
 
 
