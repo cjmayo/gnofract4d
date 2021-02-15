@@ -316,7 +316,7 @@ s_param * parse_params(PyObject *pyarray, int *plen)
     if (len == 0)
     {
         params = (struct s_param *)malloc(sizeof(struct s_param));
-        params[0].t = FLOAT;
+        params[0].t = FLOAT_TYPE;
         params[0].doubleval = 0.0;
     }
     else if (len > PF_MAXPARAMS)
@@ -340,13 +340,13 @@ s_param * parse_params(PyObject *pyarray, int *plen)
             }
             if (PyFloat_Check(pyitem))
             {
-                params[i].t = FLOAT;
+                params[i].t = FLOAT_TYPE;
                 params[i].doubleval = PyFloat_AsDouble(pyitem);
                 //fprintf(stderr,"%d = float(%g)\n",i,params[i].doubleval);
             }
             else if (PyLong_Check(pyitem))
             {
-                params[i].t = INT;
+                params[i].t = INT_TYPE;
                 params[i].intval = PyLong_AS_LONG(pyitem);
                 //fprintf(stderr,"%d = int(%d)\n",i,params[i].intval);
             }
@@ -434,10 +434,10 @@ PyObject * params_to_python(struct s_param *params, int len)
     {
         switch (params[i].t)
         {
-        case FLOAT:
+        case FLOAT_TYPE:
             PyList_SET_ITEM(pyret, i, PyFloat_FromDouble(params[i].doubleval));
             break;
-        case INT:
+        case INT_TYPE:
             PyList_SET_ITEM(pyret, i, PyLong_FromLong(params[i].intval));
             break;
         case GRADIENT:

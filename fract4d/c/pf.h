@@ -50,8 +50,8 @@ typedef unsigned char fate_t;
 
 typedef enum
 {
-    INT = 0,
-    FLOAT = 1,
+    INT_TYPE = 0,
+    FLOAT_TYPE = 1,
     GRADIENT = 2,
     PARAM_IMAGE = 3
 } e_paramtype;
