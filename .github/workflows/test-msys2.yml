@@ -20,15 +20,15 @@ jobs:
           update: true
           install: >-
               mingw-w64-x86_64-toolchain mingw-w64-x86_64-dlfcn
-              mingw-w64-x86_64-python mingw-w64-x86_64-python-pip
+              mingw-w64-x86_64-python mingw-w64-x86_64-python-pip mingw-w64-x86_64-python-setuptools
               mingw-w64-x86_64-python-gobject mingw-w64-x86_64-gtk3 mingw-w64-x86_64-libxml2
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - name: Install Tox and any other PyPI packages
-        run: pip install setuptools tox
+      - name: Install pytest and any other PyPI packages
+        run: pip install pytest pytest-cov
       - name: Build
         run: python setup.py build
-      - name: Run Tox
-        run: tox -e py
+      - name: Run pytest
+        run: python -m pytest --verbose --full-trace --cov=fract4d --cov=fract4dgui --cov=fract4d_compiler --cov-report=xml fract4d fract4dgui fract4d_compiler test.py
