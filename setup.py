@@ -142,7 +142,7 @@ module_fract4dc = Extension(
     include_dirs=['fract4d/c', 'fract4d/c/fract4dc', 'fract4d/c/model'],
     libraries=['stdc++'],
     extra_compile_args=extra_compile_args + png_flags + jpeg_flags,
-    extra_link_args=png_libs + jpeg_libs,
+    extra_link_args=png_libs + jpeg_libs + ["-ldl"],
     define_macros=define_macros,
 )
 
